@@ -8,8 +8,8 @@ const mysqlConnection=require("./connection")
 require('dotenv').config();
 const http = require('http');
 
-const hostname = process.env.B_HOST;
-const port = process.env.B_PORT;
+const hostname = process.env.HOST;
+const port = process.env.PORT;
 
 const EmployeeRoutes = require("./routes/employee")
 
@@ -18,8 +18,8 @@ app.use(bodyParser.json());
 app.use("/employee",EmployeeRoutes)
 
 
-cron.schedule("* 1 * * *", function() {
-    console.log("running a task every minute");
+cron.schedule("* * * * *", function() {
+    console.log("running a task every five minute");
     mysqldump({
         connection: {
             host: 'localhost',
@@ -27,7 +27,7 @@ cron.schedule("* 1 * * *", function() {
             password: 'mysqlpassword',
             database: 'example',
         },
-        dumpToFile: './dump.sql',
+        dumpToFile: './backupdata.sql',
     });
   });
 
