@@ -18,8 +18,8 @@ app.use(bodyParser.json());
 app.use("/employee",EmployeeRoutes)
 
 
-cron.schedule("* * * * *", function() {
-    console.log("running a task every five minute");
+cron.schedule("0 * * * *", function() {
+    console.log("running a task every one hour");
     mysqldump({
         connection: {
             host: 'localhost',

@@ -64,13 +64,16 @@ Router.post('/gettoken',(req,res)=>{
     if (userName == admin.name && password == admin.password){
         const user ={name:userName}
 
-        const token = jwt.sign(user,process.env.PORT_TOKEN, {expiresIn: '30s' })
+        const token = jwt.sign(user,process.env.PORT_TOKEN, {expiresIn: '5m' })
           
         res.json({
             create :1,
-            port_token :token
+            port_token :token,
+            message:'Token valid only for 5 minutes'
         })
-    }else{
+    }
+    else
+    {
          
         res.json({
              create :0,
