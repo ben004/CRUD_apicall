@@ -1,17 +1,14 @@
 const cron = require("node-cron");
 
 const mysqldump =require('mysqldump');
-const mysql = require("mysql");
 const express =require("express");
 const bodyParser=require("body-parser");
-const mysqlConnection=require("./connection")
 require('dotenv').config();
-const http = require('http');
 
 const hostname = process.env.HOST;
 const port = process.env.PORT;
 
-const EmployeeRoutes = require("./routes/employee")
+const EmployeeRoutes = require("./routes/routes")
 
 let app=express();
 app.use(bodyParser.json());
@@ -32,7 +29,7 @@ cron.schedule("0 * * * *", function() {
   });
 
 app.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);}
+    console.log(`Server running at http://${hostname}:${port}`);}
 );
 
 

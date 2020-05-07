@@ -8,14 +8,6 @@ let mysqlConnection = mysql.createConnection({
 });
   
 mysqlConnection.connect((err)=>{
-    if(!err)
-    {
-        console.log("connected");
-    }
-    else
-    {
-        console.log("not connected");
-    }
-
+    return !err ? console.log("connected") : console.log("not connected")
 })
 module.exports=mysqlConnection;
